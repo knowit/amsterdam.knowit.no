@@ -1,0 +1,54 @@
+{
+  "name": "amsterdam.knowit.no",
+  "description": "Fagseminar side for Knowit Stavanger",
+  "version": "1.0.0",
+  "author": "Frode Anonsen <frode.aanonsen@knowit.no>",
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.15",
+    "@emotion/styled": "^10.0.15",
+    "@material-ui/core": "^4.3.2",
+    "@material-ui/icons": "^4.2.1",
+    "date-fns": "^2.0.1",
+    "gatsby": "^2.13.64",
+    "gatsby-link": "^2.2.5",
+    "gatsby-plugin-emotion": "^4.1.2",
+    "gatsby-plugin-material-ui": "^2.1.6",
+    "gatsby-plugin-postcss": "^2.1.3",
+    "gatsby-plugin-react-helmet": "^3.1.3",
+    "gatsby-source-airtable": "^2.0.8",
+    "gatsby-source-filesystem": "^2.1.28",
+    "gatsby-transformer-remark": "^2.6.14",
+    "gh-pages": "^2.1.1",
+    "lodash": "^4.17.15",
+    "polished": "^3.4.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-emotion": "^10.0.0",
+    "react-helmet": "^5.2.1",
+    "react-spring": "^8.0.27",
+    "remark-html": "^10.0.0",
+    "unified": "^8.3.2"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build --prefix-paths",
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "format": "prettier --write 'src/**/*(*.js|*.jsx)'",
+    "test": "echo \"Error: no test specified ( ͡° ͜ʖ ͡°)\"",
+    "predeploy": "npm run build && cp CNAME public/",
+    "deploy": "gh-pages -d public",
+    "predeploy-ci": "npm run build",
+    "deploy-ci": "node ghpagesScript.js",
+    "prettier": "node prettier.js write",
+    "lint": "yarn run lint-prettier",
+    "lint-prettier": "node prettier.js lint"
+  }
+}

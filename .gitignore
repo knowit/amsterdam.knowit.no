@@ -1,0 +1,15 @@
+# Project dependencies
+.cache
+node_modules
+yarn-error.log
+.idea/
+
+# Build directory
+/public/*
+!/public/static/pics
+.DS_Store
+
+
+# Secrets
+
+secrets.js
