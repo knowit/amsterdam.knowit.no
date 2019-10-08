@@ -25,5 +25,7 @@ jobs:
         npm install
         npm run build
         npm run predeploy
+        git config user.email "github_actions@knowit.no"
+        git config user.name "GitHub Actions"
         npm run deploy
         
