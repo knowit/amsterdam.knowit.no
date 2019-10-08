@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   siteMetadata: {
     title: 'Knowit Stavanger - Amsterdam 2019',
@@ -17,11 +19,11 @@ module.exports = {
     {
       resolve: 'gatsby-source-airtable',
       options: {
-        apiKey: process.env.API_KEY,
+        apiKey: process.env.AIRTABLE_API_SECRET,
         tables: [
           {
-            baseId: process.env.BASE_ID,
-            tableName: process.env.TABLE_NAME,
+            baseId: 'appgkWbRQwuCYnrYf',
+            tableName: 'Slots',
             mapping: { speaker_image: 'fileNode' },
           },
         ],
