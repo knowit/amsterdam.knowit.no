@@ -21,7 +21,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@master
       env:
         AIRTABLE_API_SECRET: ${{ secrets.AIRTABLE_API_SECRET }}
-        ACCESS_TOKEN: ${{ secrets.DEPLOY_KEY }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BASE_BRANCH: master
         BRANCH: gh-pages
         FOLDER: public
