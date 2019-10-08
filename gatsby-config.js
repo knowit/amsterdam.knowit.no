@@ -1,5 +1,3 @@
-const secrets = require('./secrets');
-
 module.exports = {
   siteMetadata: {
     title: 'Knowit Stavanger - Amsterdam 2019',
@@ -19,11 +17,11 @@ module.exports = {
     {
       resolve: 'gatsby-source-airtable',
       options: {
-        apiKey: secrets.AIRTABLE.API_SECRET,
+        apiKey: process.env.API_KEY,
         tables: [
           {
-            baseId: secrets.AIRTABLE.BASE_ID,
-            tableName: secrets.AIRTABLE.TABLE_NAME,
+            baseId: process.env.BASE_ID,
+            tableName: process.env.TABLE_NAME,
             mapping: { speaker_image: 'fileNode' },
           },
         ],
