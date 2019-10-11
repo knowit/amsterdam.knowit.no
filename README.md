@@ -45,3 +45,6 @@ yarn deploy
 - React (https://reactjs.org/)
 - Gatsby (https://www.gatsbyjs.org/)
 - Emotion (https://emotion.sh/)
+
+# Updates
+2019-10-11 13:40 New data
