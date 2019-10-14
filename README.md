@@ -1,6 +1,8 @@
 # Knowit Stavanger Amsterdam
 
 Created with [Gatsby](https://www.gatsbyjs.org/).
+Forked from https://github.com/knowit/praha.knowit.no
+
 
 ## Before commit
 
