@@ -7,7 +7,7 @@ Created with [Gatsby](https://www.gatsbyjs.org/).
 Run prettier to pretify the code.
 
 ```sh
-yarn prettier
+npm prettier
 ```
 
 ## Install gatsby
@@ -19,25 +19,25 @@ npm install --global gatsby-cli
 and install dependencies inside this folder:
 
 ```sh
-yarn
+npm
 ```
 
 And run from your CLI:
 
 ```sh
-yarn start
+npm start
 ```
 
 To build, run:
 
 ```sh
-yarn build
+npm build
 ```
 
 To deploy, run (when pushing to master, the application is automatically deployed):
 
 ```
-yarn deploy
+npm deploy
 ```
 
 **Important libraries used:**
