@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Home from '@material-ui/icons/Home';
 import Person from '@material-ui/icons/Person';
 import AddFavorite from '../Favorites/AddFavorite';
-import spacing from '../../util/spacing';
 import Button from '../Button';
 import {
   StyledSlotGridWrapper,
@@ -71,21 +70,8 @@ ShowButton.propTypes = {
 const Slot = ({ slot, date, favorites, setFavorites, viewType }) => {
   const descriptionRef = React.createRef();
 
-  const [maxLength, setMaxLength] = useState(undefined);
+  const [maxLength] = useState(undefined);
   const [showDescription, setShowDescription] = useState(false);
-
-  /*useEffect(() => {
-    setTimeout(() => {
-      if (descriptionRef && descriptionRef.current) {
-        const getBoundingClientRectData = descriptionRef.current.getBoundingClientRect();
-        if (getBoundingClientRectData.height > 30) {
-          setMaxLength(
-            getBoundingClientRectData.width - spacing.spacingUnit * 3,
-          );
-        }
-      }
-    }, 600);
-  }, [viewType]);*/
 
   return (
     <StyledSlotGridWrapper viewType={viewType}>

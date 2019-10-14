@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import ViewWeek from '@material-ui/icons/ViewWeek';
-import MoreVert from '@material-ui/icons/MoreVert';
 import Button from './Button';
 import css from '@emotion/css';
 import spacing from '../util/spacing';

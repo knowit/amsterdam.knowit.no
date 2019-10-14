@@ -21,7 +21,7 @@ const StyledNavigation = styled.div`
   justify-content: center;
   display: grid;
   grid-column-gap: ${spacing.normal};
-  grid-template-columns: repeat(3, ${spacing.spacingUnit * 6}px [col-start]);
+  grid-template-columns: repeat(3, ${spacing.spacingUnit * 8}px [col-start]);
 `;
 
 const StyledPushElement = styled.div`

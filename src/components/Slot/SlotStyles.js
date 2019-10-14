@@ -5,13 +5,13 @@ import mediaQueries from '../../util/mediaQueries';
 import spacing from '../../util/spacing';
 
 export const typeColors = {
-  other: colors.blueDark,
-  talk: colors.green,
-  keynote: colors.blue,
+  common: colors.blueDark,
+  dev: colors.green,
+  digi: colors.blue,
 };
 
 const gridTemplates = {
-  talk: {
+  dev: {
     desktop: css`
       grid-template-rows: auto;
       grid-template-columns: 10% 78% 10%;
@@ -33,7 +33,7 @@ const gridTemplates = {
         'room        room';
     `,
   },
-  keynote: {
+  common: {
     desktop: css`
       grid-template-rows: auto;
       grid-template-columns: 10% 78% 10%;
@@ -55,7 +55,7 @@ const gridTemplates = {
         'room        room';
     `,
   },
-  other: {
+  digi: {
     desktop: css`
       grid-template-rows: auto auto auto;
       grid-template-columns: 10% 78% 10%;
