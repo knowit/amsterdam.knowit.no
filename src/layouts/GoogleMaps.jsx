@@ -6,7 +6,8 @@ import mediaQueries from '../util/mediaQueries';
 
 const StyledGoogleMapsWrapper = styled.div`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
+  overflow: hidden;
   position: relative;
 `;
 
@@ -37,7 +38,7 @@ const StyleGoogleMapsContent = styled.div`
 
 const StyledGoogleMaps = styled.iframe`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   border: none;
 `;
 

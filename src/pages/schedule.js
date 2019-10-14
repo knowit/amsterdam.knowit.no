@@ -16,6 +16,7 @@ import mediaQueries from '../util/mediaQueries';
 import spacing from '../util/spacing';
 import { fetchSlots } from '../graphql/airtable';
 import { filterTypes } from '../components/Filters/Filters';
+import ViewTypes from '../components/ViewTypes';
 
 const buttonGroupStyle = numberOfButtons => css`
   margin: ${spacing.large} auto;
@@ -90,16 +91,20 @@ export const getActiveDay = () => {
 
 const SchedulePage = ({ location }) => {
   const StyledSafeLink = StyledLink.withComponent(SafeLink);
+
   const [activeFilters, setActiveFilters] = useState(
     filterTypes.map(filter => filter.type),
   );
-
   const [slots, setSlots] = useState([]);
+  const [viewType, setViewType] = useState('row');
+
   const dayInUrl = viewmodel.days.find(
     scheduleDay => scheduleDay.date === location.hash.substring(1),
   );
   const activeDay = dayInUrl || getActiveDay();
+
   const fetchedSlots = fetchSlots();
+
   useEffect(() => {
     setActiveFilters(filterTypes.map(filter => filter.type));
     setSlots(fetchedSlots);
@@ -155,7 +160,15 @@ const SchedulePage = ({ location }) => {
             activeFilters={activeFilters}
             onChangeActiveFilters={onChangeActiveFilters}
           />
-          <Slots activeFilter={activeFilters} slots={currenSlots} />
+          <ViewTypes
+            currentViewType={viewType}
+            onChangeViewType={setViewType}
+          />
+          <Slots
+            activeFilter={activeFilters}
+            slots={currenSlots}
+            viewType={viewType}
+          />
         </ContentSection>
       </Content>
     </DefaultLayout>

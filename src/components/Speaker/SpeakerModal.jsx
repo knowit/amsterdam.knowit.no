@@ -15,17 +15,19 @@ const useStyles = makeStyles(theme => ({
   modal: {
     display: 'flex',
     margin: '0 auto',
-    overflowY: 'scroll',
   },
 }));
 
 const StyledModal = styled.div`
   max-width: 60%;
   width: 60%;
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: white;
   padding: ${spacing.normal};
-  max-height: 90vh;
+  max-height: 80vh;
+  height: fit-content;
+  margin: 0 auto;
+
   @media (${mediaQueries.medium}) {
     max-width: 100%;
     width: 100%;

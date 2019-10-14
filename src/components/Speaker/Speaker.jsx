@@ -6,15 +6,13 @@ import SpeakerFavourites from './SpeakerFavourites';
 
 const StyledSpeakerContainer = styled.div`
   display: grid;
-  overflow-y: scroll;
   align-content: start;
   grid-template-rows: max-content auto auto;
   grid-template-columns: 30% 35% 35%;
   align-items: center;
   grid-template-areas:
-    'image title       title '
-    'image description description'
-    '.     recreation  favourites';
+    'image title   title '
+    'image content content';
 
   @media (${mediaQueries.medium}) {
     display: grid;
@@ -24,9 +22,7 @@ const StyledSpeakerContainer = styled.div`
     grid-template-areas:
       'image'
       'title'
-      'description'
-      'recreation'
-      'favourites';
+      'content';
   }
 `;
 
@@ -37,13 +33,13 @@ const StyledTitle = styled.h2`
 `;
 
 const StyledDescription = styled.span`
-  grid-area: description;
   align-self: start;
+  flex: 0 0 100%;
 `;
 
 const StyledSpeakerRecreation = styled.span`
-  grid-area: recreation;
   align-self: start;
+  flex: 1;
 `;
 
 const StyledImage = styled.img`
@@ -70,6 +66,14 @@ const StyledIcon = styled.span`
   }
 `;
 
+const StyledContent = styled.div`
+  grid-area: content;
+  align-self: start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+`;
+
 const Speaker = ({
   slot: {
     userIds,
@@ -94,17 +98,19 @@ const Speaker = ({
         </StyledIcon>
       )}
       <StyledTitle>{userIds}</StyledTitle>
-      <StyledDescription>
-        {speaker_bio ||
-          'Vi har dessverre ingen beskrivelse på denne personen :('}
-      </StyledDescription>
-      <SpeakerFavourites speaker_favourites={speaker_favourites} />
-      {speaker_recreation && (
-        <StyledSpeakerRecreation>
-          <h2>Hva gjør du på fritida?</h2>
-          <p>{speaker_recreation}</p>
-        </StyledSpeakerRecreation>
-      )}
+      <StyledContent>
+        <StyledDescription>
+          {speaker_bio ||
+            'Vi har dessverre ingen beskrivelse på denne personen :('}
+        </StyledDescription>
+        <SpeakerFavourites speaker_favourites={speaker_favourites} />
+        {speaker_recreation && (
+          <StyledSpeakerRecreation>
+            <h2>Hva gjør du på fritida?</h2>
+            <p>{speaker_recreation}</p>
+          </StyledSpeakerRecreation>
+        )}
+      </StyledContent>
     </StyledSpeakerContainer>
   );
 };

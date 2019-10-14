@@ -41,27 +41,34 @@ const outlinedFilter = type => css`
   border: 2px solid ${typeColors[type]};
 `;
 
-const getStyle = (isHover, isActive, type) => {
+const getStyle = (isHover, isFocus, isActive, type) => {
   if (isHover) {
     return isActive ? outlinedFilter(type) : filledFilter(type);
+  } else if (isFocus) {
+    return isActive ? filledFilter(type) : outlinedFilter(type);
   }
   return isActive ? filledFilter(type) : outlinedFilter(type);
 };
 
 const filterButtonStyle = (type = 'other', isActive = false) => css`
   &,
+  &:hover,
   &:focus {
     display: flex;
     justify-content: center;
     line-height: 1.8rem;
-    ${getStyle(false, isActive, type)};
+  }
+
+  & {
+    ${getStyle(false, false, isActive, type)};
+  }
+
+  &:focus {
+    ${getStyle(false, true, isActive, type)};
   }
 
   &:hover {
-    display: flex;
-    justify-content: center;
-    line-height: 1.8rem;
-    ${getStyle(true, isActive, type)};
+    ${getStyle(true, false, isActive, type)};
   }
 `;
 
