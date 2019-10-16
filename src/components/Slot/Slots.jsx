@@ -7,6 +7,16 @@ import { getCookie, setCookie } from '../../util/cookieHelper';
 import viewmodel from '../../json';
 import css from '@emotion/css';
 import mediaQueries from '../../util/mediaQueries';
+import SlotsWithRoom from './SlotsWithRoom';
+
+const groupSlots = {
+  1: [
+    { start: '09:00', end: '09:15' },
+    { start: '09:15', end: '09:30' },
+    { start: '09:30', end: '10:00' },
+    { start: '10:00', end: '10:30' },
+  ],
+};
 
 const getColumnStyle = viewType => {
   if (viewType === 'column') {
@@ -38,12 +48,13 @@ const StyledSlots = styled.div`
 `;
 
 const Slots = ({
-  slots,
-  removeFavorite,
-  noGroupBy,
-  viewType,
-  isFavourites,
-}) => {
+                 slots,
+                 removeFavorite,
+                 noGroupBy,
+                 viewType,
+                 isFavourites,
+                 activeDay,
+               }) => {
   const [favorites, setFavorites] = useState([]);
 
   const updateFavorites = newFavorites => {
@@ -98,22 +109,76 @@ const Slots = ({
       ));
   }
 
-  const groupedByStart = groupBy(slots, slot => slot.start);
+  //const groupedByStart = groupBy(slots, slot => slot.start);
+
+  const newTestSlots = () => {
+    const groups = groupSlots[activeDay.date];
+    if (!groups) {
+      return slots;
+    }
+    let newSlots = [];
+    slots.forEach(slot => {
+      const foundGroupStart = groups.find(group => group.start === slot.start);
+      const foundGroupEnd = groups.find(group => group.end === slot.end);
+      if (slot.type !== 'other' && (foundGroupStart || foundGroupEnd)) {
+        const start = foundGroupStart
+          ? foundGroupStart.start
+          : foundGroupEnd.start;
+        const end = foundGroupEnd ? foundGroupEnd.end : foundGroupStart.end;
+        const alreadyPushed = newSlots.find(newSlot => newSlot.start === start);
+        const alreadyPushedIndex = newSlots.findIndex(
+          newSlot => newSlot.start === start,
+        );
+        if (alreadyPushed) {
+          newSlots = [
+            ...newSlots.slice(0, alreadyPushedIndex),
+            {
+              ...newSlots[alreadyPushedIndex],
+              slots: [...newSlots[alreadyPushedIndex].slots, slot],
+            },
+            ...newSlots.slice(alreadyPushedIndex + 1),
+          ];
+        } else {
+          newSlots.push({
+            start,
+            end,
+            date: slot.date,
+            slots: [slot],
+          });
+        }
+      } else {
+        newSlots.push(slot);
+      }
+    });
+    return newSlots;
+  };
+
+  const groupedByStart = groupBy(newTestSlots(), slot => slot.start);
   return Object.keys(groupedByStart)
     .sort()
     .map(startKey => (
       <div key={startKey}>
-        <h3>{startKey}</h3>
+        <h2>{startKey}</h2>
         <StyledSlots viewType={viewType}>
-          {groupedByStart[startKey].map(slot => (
-            <Slot
-              key={`${slot.title}_${slot.room}`}
-              slot={slot}
-              setFavorites={updateFavorites}
-              favorites={favorites}
-              viewType={viewType}
-            />
-          ))}
+          {groupedByStart[startKey].map((slot, index) =>
+            slot.slots ? (
+              <SlotsWithRoom
+                key={`${index}`}
+                slot={slot}
+                setFavorites={updateFavorites}
+                favorites={favorites}
+                viewType={viewType}
+              />
+            ) : (
+              <Slot
+                key={`${slot.title}_${slot.room}`}
+                slot={slot}
+                setFavorites={updateFavorites}
+                favorites={favorites}
+                viewType={viewType}
+              />
+            ),
+          )}
         </StyledSlots>
       </div>
     ));

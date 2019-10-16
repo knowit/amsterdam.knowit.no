@@ -33,6 +33,28 @@ const gridTemplates = {
         'room        room';
     `,
   },
+  digi: {
+    desktop: css`
+      grid-template-rows: auto;
+      grid-template-columns: 10% 78% 10%;
+      grid-template-areas:
+        'time     title       favorite'
+        'duration description favorite'
+        '.        speakers    speakers'
+        '.        room        room';
+    `,
+    mobile: css`
+      grid-template-rows: auto auto auto auto auto auto;
+      grid-template-columns: 70% 30%;
+      grid-template-areas:
+        'time        favorite'
+        'duration    favorite'
+        'title       title'
+        'description description'
+        'speakers    speakers'
+        'room        room';
+    `,
+  },
   common: {
     desktop: css`
       grid-template-rows: auto;
@@ -55,7 +77,7 @@ const gridTemplates = {
         'room        room';
     `,
   },
-  digi: {
+  keynote: {
     desktop: css`
       grid-template-rows: auto auto auto;
       grid-template-columns: 10% 78% 10%;

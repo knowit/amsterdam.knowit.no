@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import ExpandMore from '@material-ui/icons/ExpandMore';
 import Home from '@material-ui/icons/Home';
 import Person from '@material-ui/icons/Person';
 import AddFavorite from '../Favorites/AddFavorite';
-import Button from '../Button';
 import {
   StyledSlotGridWrapper,
   StyledSlotGrid,
@@ -26,53 +24,7 @@ import {
 } from './SlotStyles';
 import SlotSpeakers from './SlotSpeakers';
 
-const maxLengthStyle = maxLength => css`
-  max-width: ${maxLength}px;
-  overflow: hidden;
-  position: relative;
-  white-space: nowrap;
-  display: inline-block;
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: calc(${maxLength}px - 60px);
-    height: 100%;
-    width: 60px;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0) 30%,
-      rgba(255, 255, 255, 1) 100%
-    );
-  }
-`;
-
-const expandMoreStyle = rotation => css`
-  transform: rotate(${rotation}deg);
-  transition: transform 1s ease-in-out;
-`;
-
-const ShowButton = ({ showDescription, setShowDescription }) => (
-  <Button
-    appearance="stripped"
-    onClick={() => setShowDescription(!showDescription)}>
-    <ExpandMore
-      css={showDescription ? expandMoreStyle(180) : expandMoreStyle(0)}
-    />
-  </Button>
-);
-
-ShowButton.propTypes = {
-  showDescription: PropTypes.bool.isRequired,
-  setShowDescription: PropTypes.func.isRequired,
-};
-
 const Slot = ({ slot, date, favorites, setFavorites, viewType }) => {
-  const descriptionRef = React.createRef();
-
-  const [maxLength] = useState(undefined);
-  const [showDescription, setShowDescription] = useState(false);
-
   return (
     <StyledSlotGridWrapper viewType={viewType}>
       <StyledType type={slot.type} viewType={viewType} />
@@ -92,29 +44,15 @@ const Slot = ({ slot, date, favorites, setFavorites, viewType }) => {
           </StyledDuration>
         )}
         {slot.description && (
-          <StyledDescription ref={descriptionRef}>
+          <StyledDescription>
             <div
-              css={
-                maxLength && !showDescription
-                  ? maxLengthStyle(maxLength)
-                  : css`
-                      display: inline-block;
-                    `
-              }>
-              {slot.description}
-              {maxLength && showDescription && (
-                <ShowButton
-                  showDescription={showDescription}
-                  setShowDescription={setShowDescription}
-                />
-              )}
-            </div>
-            {maxLength && !showDescription && (
-              <ShowButton
-                showDescription={showDescription}
-                setShowDescription={setShowDescription}
-              />
-            )}
+              css={css`
+                display: inline-block;
+              `}
+              dangerouslySetInnerHTML={{
+                __html: slot.description,
+              }}
+            />
           </StyledDescription>
         )}
         <StyledFavorite>
