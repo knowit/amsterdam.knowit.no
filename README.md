@@ -1,5 +1,7 @@
 # Knowit Stavanger Amsterdam
 
+![](https://github.com/knowit/amsterdam.knowit.no/workflows/Deploy%20to%20gh-pages%20site/badge.svg)
+
 Created with [Gatsby](https://www.gatsbyjs.org/).
 Forked from https://github.com/knowit/praha.knowit.no
 
