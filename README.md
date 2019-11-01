@@ -51,4 +51,4 @@ npm deploy
 - Emotion (https://emotion.sh/)
 
 # Updates
-2019-10-31 12:28 Dev data
+2019-11-01 10:18 Van Gogh
