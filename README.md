@@ -51,4 +51,4 @@ npm deploy
 - Emotion (https://emotion.sh/)
 
 # Updates
-2019-11-01 10:18 Van Gogh
+2019-11-02 19:00 Middag
